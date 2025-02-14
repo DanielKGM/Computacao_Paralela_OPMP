@@ -1,0 +1,6 @@
+Neste diretório ficarão os dados utilizados pelos algoritmos de ordenação, 
+eles são gerados a partir do script data_generator.py, na raiz do diretório 
+
+execute:
+    pip install numpy
+    python data_generator.py

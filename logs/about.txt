@@ -1,0 +1,2 @@
+Aqui ficam os logs com os tempos e os arquivos lidos pelos diferentes algoritmos de ordenação
+nas mais variadas combinações de threads
