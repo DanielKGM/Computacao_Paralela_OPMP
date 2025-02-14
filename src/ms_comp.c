@@ -69,10 +69,7 @@ int main() {
     // Registrar tempo no log
     log_execution_time(filepath, time_taken, log_filename);
 
-    // Exibir resultado
-    //printf("Array ordenado:\n");
-    //print_array(arr, size);
-    //printf("\n\n%.6f segundos\n", time_taken);
+    print_array(arr, size);
 
     // Liberar memória
     free(arr);

@@ -70,5 +70,5 @@ gcc -o ms_compartilhada.exe src/ms_comp.c utils/array_from_file.c utils/print_ar
 ## Odd Even Transportation (Memória Compartilhada)
 
 ```
-gcc -o oe_transportation.exe src/oe_trans.c utils/array_from_file.c utils/print_array.c utils/log_execution_time.c -I utils -fopenmp
+gcc -o oe_transposition.exe src/oe_trans.c utils/array_from_file.c utils/print_array.c utils/log_execution_time.c -I utils -fopenmp
 ```
