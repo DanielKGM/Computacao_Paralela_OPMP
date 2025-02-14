@@ -10,3 +10,4 @@ data/30k_ints.txt: 0.000000 segundos
 data/30k_ints.txt: 0.000000 segundos
 data/30k_ints.txt: 0.000000 segundos
 data/30k_ints.txt: 0.000000 segundos
+data/30k_ints.txt: 0.000000 segundos
