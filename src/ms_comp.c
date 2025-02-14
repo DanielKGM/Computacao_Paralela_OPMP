@@ -6,7 +6,7 @@
 #include "log_execution_time.h"
 #include "ms.h"
 
-void mergesort_parallel_omp(int a[], int size, int temp[], int threads) {
+void mergesort_compartilhada(int a[], int size, int temp[], int threads) {
     if (size < 2) return;  // Caso base
 
     int mid = size / 2;
@@ -56,7 +56,7 @@ int main() {
 
     // Medir tempo do Merge Sort paralelo
     double start = omp_get_wtime();
-    mergesort_parallel_omp(arr, size, temp, threads);
+    mergesort_compartilhada(arr, size, temp, threads);
     double end = omp_get_wtime();
 
     // Calcular tempo decorrido
