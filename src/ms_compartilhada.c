@@ -4,39 +4,40 @@
 #include "array_from_file.h"
 #include "print_array.h"
 #include "log_execution_time.h"
-#include "merge.h"
+#include "ms.h"
 
-// Merge Sort paralelo usando OpenMP
 void mergesort_parallel_omp(int a[], int size, int temp[], int threads) {
-    if (size < 2) return;  // Caso base: um array de 1 elemento já está ordenado
+    if (size < 2) return;  // Caso base
 
-    int mid = size / 2;  // Divide o array ao meio
+    int mid = size / 2;
 
-    // Cria duas seções para rodar em paralelo
-    #pragma omp parallel sections
-    {
-        #pragma omp section
+    if (threads > 1) {
+        #pragma omp parallel
         {
-            mergesort_parallel_omp(a, mid, temp, threads / 2);  // Ordena a primeira metade
+            #pragma omp single nowait
+            {
+                #pragma omp task
+                mergesort_parallel_omp(a, mid, temp, threads / 2);
+                
+                #pragma omp task
+                mergesort_parallel_omp(a + mid, size - mid, temp + mid, threads - threads / 2);
+
+                #pragma omp taskwait
+                merge(a, size, temp);
+            }
         }
-        #pragma omp section
-        {
-            mergesort_parallel_omp(a + mid, size - mid, temp + mid, threads - threads / 2);  // Ordena a segunda metade
-        }
+    } else {
+        mergesort_serial(a, size, temp);
     }
-
-    // Mescla as duas metades ordenadas
-    merge(a, size, temp);
-
 }
 
 int main() {
     char filename[100];
-    printf("Digite o nome do arquivo (sem .txt): ");
+    printf("Digite o nome do arquivo (sem .bin): ");
     scanf("%99s", filename);
 
     char filepath[150];
-    snprintf(filepath, sizeof(filepath), "data/%s.txt", filename);
+    snprintf(filepath, sizeof(filepath), "data/%s.bin", filename);
 
     int *arr;
     int size = read_array_from_file(filepath, &arr);
@@ -61,17 +62,17 @@ int main() {
     // Calcular tempo decorrido
     double time_taken = end - start;
 
-    // Exibir resultado
-    printf("Array ordenado:\n");
-    print_array(arr, size);
-    printf("\n\n%.6f segundos\n", time_taken);
-
     // Criar nome do arquivo de log com número de threads
     char log_filename[50];
     snprintf(log_filename, sizeof(log_filename), "ms_compartilhada_%d_threads", threads);
 
     // Registrar tempo no log
     log_execution_time(filepath, time_taken, log_filename);
+
+    // Exibir resultado
+    //printf("Array ordenado:\n");
+    //print_array(arr, size);
+    //printf("\n\n%.6f segundos\n", time_taken);
 
     // Liberar memória
     free(arr);

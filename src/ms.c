@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "merge.h"
+#include "ms_serial.h"
 
 // Função que combina duas metades ordenadas do array
 void merge(int a[], int size, int temp[]) {
@@ -32,4 +32,20 @@ void merge(int a[], int size, int temp[]) {
     for (i = 0; i < size; i++) {
         a[i] = temp[i];
     }
+}
+
+// Implementação do MergeSort recursivo
+void mergesort_serial(int a[], int size, int temp[]) {
+    if (size < 2) return;  // Caso base: um array de 1 elemento já está ordenado
+
+    int mid = size / 2;  // Divide o array em duas partes
+
+    // Chamada recursiva para ordenar a primeira metade
+    mergesort_serial(a, mid, temp);
+
+    // Chamada recursiva para ordenar a segunda metade
+    mergesort_serial(a + mid, size - mid, temp);
+
+    // Mescla as duas metades ordenadas
+    merge(a, size, temp);
 }

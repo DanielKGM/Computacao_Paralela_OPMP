@@ -1,48 +1,44 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "array_from_file.h"
 
-#define BUFFER_SIZE 10000  // Buffer grande o suficiente para armazenar a linha inteira
-
 int read_array_from_file(const char *filename, int **arr) {
-    FILE *file = fopen(filename, "r");
+    FILE *file = fopen(filename, "rb");  // Abre o arquivo em modo binário
     if (!file) {
         perror("Erro ao abrir o arquivo");
         return -1;
     }
 
-    char buffer[BUFFER_SIZE];
-    if (!fgets(buffer, sizeof(buffer), file)) {
-        perror("Erro ao ler o arquivo");
+    // Descobrir o tamanho do arquivo
+    fseek(file, 0, SEEK_END);
+    long file_size = ftell(file);
+    rewind(file);
+
+    // Calcular a quantidade de inteiros no arquivo
+    int count = file_size / sizeof(int);
+    if (count == 0) {
+        fprintf(stderr, "Erro: arquivo vazio ou não contém inteiros válidos.\n");
         fclose(file);
         return -1;
     }
-    fclose(file);
 
-    // Contar quantos números existem
-    int count = 0;
-    char *temp = strdup(buffer);  // Criar uma cópia para não perder os dados originais
-    char *token = strtok(temp, ", ");
-    while (token) {
-        count++;
-        token = strtok(NULL, ", ");
-    }
-    free(temp);  // Liberar a memória usada pela cópia
-
-    // Alocar memória para os números
+    // Alocar memória para o array
     *arr = (int *)malloc(count * sizeof(int));
     if (!(*arr)) {
         perror("Erro ao alocar memória");
+        fclose(file);
         return -1;
     }
 
-    // Preencher o array com os valores do arquivo
-    count = 0;
-    token = strtok(buffer, ", ");
-    while (token) {
-        (*arr)[count++] = atoi(token);
-        token = strtok(NULL, ", ");
+    // Ler os inteiros do arquivo
+    size_t read_count = fread(*arr, sizeof(int), count, file);
+    fclose(file);
+
+    // Verificar se houve erro na leitura
+    if (read_count != count) {
+        perror("Erro na leitura do arquivo");
+        free(*arr);
+        return -1;
     }
 
     return count;  // Retorna o número de elementos lidos

@@ -54,14 +54,15 @@ Os logs registram as seguintes escalas de processos/threads:
 
 ## Merge Sort (Sequencial)
 
+`-fopenmp` é utilizado apenas para a função omp_get_wtime()
+
 ```
-gcc -o ms_sequencial.exe src/ms_sequencial.c utils/array_from_file.c utils/print_array.c utils/log_execution_time.c utils/merge.c -I utils
+gcc -o ms_sequencial.exe src/ms_sequencial.c utils/array_from_file.c utils/print_array.c u
+tils/log_execution_time.c src/ms.c -I utils -fopenmp
 ```
 
 ## Merge Sort (Memória Compartilhada)
 
-Implementação feita com o OpenMP, é necessário o argumento -fopenmp
-
 ```
-gcc -o ms_compartilhada.exe src/ms_compartilhada.c utils/array_from_file.c utils/print_array.c utils/log_execution_time.c utils/merge.c -I utils -fopenmp
+gcc -o ms_compartilhada.exe src/ms_compartilhada.c utils/array_from_file.c utils/print_array.c utils/log_execution_time.c src/ms.c -I utils -fopenmp
 ```
