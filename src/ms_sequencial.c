@@ -60,7 +60,7 @@ int main() {
     printf("\n\n%.6f segundos\n", time_taken);
 
     // Registrar tempo no log
-    log_execution_time(filepath, time_taken);
+    log_execution_time(filepath, time_taken, "ms_sequencial");
 
     // Liberar memória
     free(arr);

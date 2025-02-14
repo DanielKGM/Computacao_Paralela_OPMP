@@ -10,28 +10,24 @@
 void mergesort_parallel_omp(int a[], int size, int temp[], int threads) {
     if (size < 2) return;  // Caso base: um array de 1 elemento já está ordenado
 
-    if (threads == 1) {
-        // Se só há 1 thread disponível, executa o Merge Sort sequencial
-        mergesort_serial(a, size, temp);
-    } else if (threads > 1) {
-        int mid = size / 2;  // Divide o array ao meio
+    int mid = size / 2;  // Divide o array ao meio
 
-        // Cria duas seções para rodar em paralelo
-        #pragma omp parallel sections
+    // Cria duas seções para rodar em paralelo
+    #pragma omp parallel sections
+    {
+        #pragma omp section
         {
-            #pragma omp section
-            {
-                mergesort_parallel_omp(a, mid, temp, threads / 2);  // Ordena a primeira metade
-            }
-            #pragma omp section
-            {
-                mergesort_parallel_omp(a + mid, size - mid, temp + mid, threads - threads / 2);  // Ordena a segunda metade
-            }
+            mergesort_parallel_omp(a, mid, temp, threads / 2);  // Ordena a primeira metade
         }
-
-        // Mescla as duas metades ordenadas
-        merge(a, size, temp);
+        #pragma omp section
+        {
+            mergesort_parallel_omp(a + mid, size - mid, temp + mid, threads - threads / 2);  // Ordena a segunda metade
+        }
     }
+
+    // Mescla as duas metades ordenadas
+    merge(a, size, temp);
+
 }
 
 int main() {
@@ -70,9 +66,14 @@ int main() {
     print_array(arr, size);
     printf("\n\n%.6f segundos\n", time_taken);
 
-    // Registrar tempo no log
-    log_execution_time(filepath, time_taken);
+    // Criar nome do arquivo de log com número de threads
+    char log_filename[50];
+    snprintf(log_filename, sizeof(log_filename), "ms_compartilhada_%d_threads", threads);
 
+    // Registrar tempo no log
+    log_execution_time(filepath, time_taken, log_filename);
+
+    // Liberar memória
     free(arr);
     free(temp);
 

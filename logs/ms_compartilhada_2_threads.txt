@@ -1,0 +1,1 @@
+data/30k.txt: 0.003000 segundos

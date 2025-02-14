@@ -1,13 +1,1 @@
-data/10k_ints.txt: 0.000000 segundos
-data/10k_ints.txt: 0.000000 segundos
-data/30k_ints.txt: 0.000000 segundos
-data/30k_ints.txt: 0.001000 segundos
-data/30k_ints.txt: 0.001000 segundos
-data/30k_ints.txt: 0.000000 segundos
-data/30k_ints.txt: 0.001000 segundos
-data/30k_ints.txt: 0.001000 segundos
-data/30k_ints.txt: 0.000000 segundos
-data/30k_ints.txt: 0.000000 segundos
-data/30k_ints.txt: 0.000000 segundos
-data/30k_ints.txt: 0.000000 segundos
-data/30k_ints.txt: 0.000000 segundos
+data/30k.txt: 0.000000 segundos
