@@ -11,10 +11,9 @@ void swap(int *a, int *b) {
     *b = temp;
 }
 
-void odd_even_transportation(int *arr, int n, int threads) {
+void odd_even_transposition(int *arr, int n, int threads) {
     int phase, i;
 
-    // Definir número de threads escolhidas pelo usuário
     #pragma omp parallel default(none) shared(arr, n, threads) private(phase, i) num_threads(threads)
     for (phase = 0; phase < n; phase++) {
         if (phase % 2 == 0) {
@@ -55,9 +54,9 @@ int main() {
     printf("Digite o número de threads: ");
     scanf("%d", &threads);
 
-    // Medir tempo do Odd-Even Transportation Sort
+    // Medir tempo do Odd-Even 
     double start = omp_get_wtime();
-    odd_even_transportation(arr, size, threads);
+    odd_even_transposition(arr, size, threads);
     double end = omp_get_wtime();
 
     // Calcular tempo decorrido

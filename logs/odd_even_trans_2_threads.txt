@@ -1,0 +1,15 @@
+data/20k.bin: 0.513000 segundos
+data/20k.bin: 0.510000 segundos
+data/20k.bin: 0.516000 segundos
+data/20k.bin: 0.505000 segundos
+data/20k.bin: 0.499000 segundos
+data/200k.bin: 43.647000 segundos
+data/200k.bin: 49.074000 segundos
+data/200k.bin: 37.910000 segundos
+data/200k.bin: 38.297000 segundos
+data/200k.bin: 96.202000 segundos
+data/1mi.bin: 1288.513000 segundos
+data/1mi.bin: 1288.576000 segundos
+data/1mi.bin: 1287.773000 segundos
+data/1mi.bin: 1286.517000 segundos
+data/1mi.bin: 1276.406000 segundos

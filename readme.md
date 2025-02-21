@@ -18,7 +18,7 @@ Implementação utilizando memória distribuída
 
 - Referência: [Chapman University - Mergesort](https://digitalcommons.chapman.edu/cgi/viewcontent.cgi?article=1017&context=scs_books)
 
-### d) Odd-Even Transportation Sort Paralelo
+### d) Odd-Even Transposition Sort Paralelo
 
 - Referência: Livro do Pacheco, _Program 5.5: Second OpenMP implementation of odd-even sort_, página 236.
 
@@ -72,7 +72,7 @@ gcc -o ms_compartilhada.exe src/ms_comp.c utils/array_from_file.c utils/print_ar
 gcc -o bubblesort.exe src/bs.c utils/array_from_file.c utils/print_array.c utils/log_execution_time.c -I utils -fopenmp
 ```
 
-## Odd Even Transportation (Memória Compartilhada)
+## Odd Even Transposition (Memória Compartilhada)
 
 ```
 gcc -o oe_transposition.exe src/oe_trans.c utils/array_from_file.c utils/print_array.c utils/log_execution_time.c -I utils -fopenmp
