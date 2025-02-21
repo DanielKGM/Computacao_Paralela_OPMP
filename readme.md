@@ -67,6 +67,12 @@ tils/log_execution_time.c src/ms.c -I utils -fopenmp
 gcc -o ms_compartilhada.exe src/ms_comp.c utils/array_from_file.c utils/print_array.c utils/log_execution_time.c src/ms.c -I utils -fopenmp
 ```
 
+## BubbleSort (Sequencial)
+
+```
+gcc -o bubblesort.exe src/bs.c utils/array_from_file.c utils/print_array.c utils/log_execution_time.c -I utils -fopenmp
+```
+
 ## Odd Even Transportation (Memória Compartilhada)
 
 ```
