@@ -17,10 +17,10 @@ void mergesort_compartilhada(int a[], int size, int temp[], int threads) {
             #pragma omp single nowait
             {
                 #pragma omp task
-                mergesort_parallel_omp(a, mid, temp, threads / 2);
+                mergesort_compartilhada(a, mid, temp, threads / 2);
                 
                 #pragma omp task
-                mergesort_parallel_omp(a + mid, size - mid, temp + mid, threads - threads / 2);
+                mergesort_compartilhada(a + mid, size - mid, temp + mid, threads - threads / 2);
 
                 #pragma omp taskwait
                 merge(a, size, temp);
