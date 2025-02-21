@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ms_serial.h"
 
 // Função que combina duas metades ordenadas do array
 void merge(int a[], int size, int temp[]) {

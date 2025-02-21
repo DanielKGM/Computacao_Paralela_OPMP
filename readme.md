@@ -57,8 +57,7 @@ Os logs registram as seguintes escalas de processos/threads:
 `-fopenmp` é utilizado apenas para a função omp_get_wtime()
 
 ```
-gcc -o ms_sequencial.exe src/ms_seq.c utils/array_from_file.c utils/print_array.c u
-tils/log_execution_time.c src/ms.c -I utils -fopenmp
+gcc -o ms_sequencial.exe src/ms_seq.c utils/array_from_file.c utils/print_array.c utils/log_execution_time.c src/ms.c -I utils -fopenmp
 ```
 
 ## Merge Sort (Memória Compartilhada)
