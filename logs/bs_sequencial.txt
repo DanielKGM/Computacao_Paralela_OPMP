@@ -8,3 +8,8 @@ data/200k.bin: 97.518000 segundos
 data/200k.bin: 97.319000 segundos
 data/200k.bin: 97.232000 segundos
 data/200k.bin: 97.650000 segundos
+data/1mi.bin: 2743.446000 segundos
+data/1mi.bin: 2704.994000 segundos
+data/1mi.bin: 2704.578000 segundos
+data/1mi.bin: 2818.438000 segundos
+data/1mi.bin: 2819.789000 segundos

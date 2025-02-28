@@ -1,5 +1,0 @@
-data/20k.bin: 0.556000 segundos
-data/20k.bin: 0.558000 segundos
-data/20k.bin: 0.550000 segundos
-data/20k.bin: 0.660000 segundos
-data/20k.bin: 0.530000 segundos
